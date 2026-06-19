@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin HSR | Mikhael</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Joki HSR Admin</h2>
+        <button class="nav-btn active" onclick="switchTab('users')">Manajemen Users</button>
+        <button class="nav-btn" onclick="switchTab('accounts')">Akun Game HSR</button>
+        <button class="nav-btn" onclick="switchTab('services')">Manajemen Layanan</button>
+        <button class="nav-btn" onclick="switchTab('orders')">Data Pesanan</button>
+        <button class="nav-btn" onclick="switchTab('payments')">Data Pembayaran</button>
+    </div>
+
+    <div class="main-content">
+        
+        <!-- SECTION USERS -->
+        <div id="users" class="section-panel active">
+            <div class="card">
+                <h3 id="userTitle">Tambah User Baru</h3>
+                <form id="userForm">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" id="nama_lengkap" placeholder="Nama Lengkap" required></div>
+                        <div class="form-group"><input type="text" id="username" placeholder="Username" required></div>
+                        <div class="form-group"><input type="email" id="email" placeholder="Email" required></div>
+                        <div class="form-group"><input type="text" id="password" placeholder="Password" required></div>
+                        <div class="form-group"><input type="text" id="no_wa" placeholder="Nomor WhatsApp"></div>
+                        <div class="form-group">
+                            <select id="role" required>
+                                <option value="">-- Pilih Role --</option>
+                                <option value="admin">Admin</option>
+                                <option value="worker">Worker / Penjoki</option>
+                                <option value="customer">Customer / Pelanggan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Simpan User</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Daftar Sistem User</h3>
+                <ul id="userList" class="data-list"></ul>
+            </div>
+        </div>
+
+        <div id="accounts" class="section-panel">
+            <div class="card">
+                <h3 id="accountTitle">Tambah Akun Game</h3>
+                <form id="accountForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <select id="acc_customer_id" required>
+                                <option value="">-- Pilih Pemilik (Customer) --</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><input type="number" id="uid_hsr" placeholder="UID HSR" required></div>
+                        <div class="form-group">
+                            <select id="server" required>
+                                <option value="">-- Pilih Server --</option>
+                                <option value="Asia">Asia</option>
+                                <option value="America">America</option>
+                                <option value="Europe">Europe</option>
+                                <option value="TW,HK,MO">TW,HK,MO</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><input type="number" id="level" placeholder="Trailblaze Level" required></div>
+                        <div class="form-group"><input type="text" id="login_via" placeholder="Login Via (Google/Hoyoverse)" required></div>
+                        <div class="form-group"><input type="email" id="email_akun" placeholder="Email Akun Game" required></div>
+                        <div class="form-group"><input type="text" id="acc_password" placeholder="Password Akun Game" required></div>
+                    </div>
+                    <button type="submit" class="btn-submit">Simpan Akun</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Daftar Akun Game HSR</h3>
+                <ul id="accountList" class="data-list"></ul>
+            </div>
+        </div>
+
+        <div id="services" class="section-panel">
+            <div class="card">
+                <h3 id="serviceTitle">Tambah Layanan Baru</h3>
+                <form id="serviceForm">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" id="kategori" placeholder="Kategori (cth: Endgame)" required></div>
+                        <div class="form-group"><input type="text" id="nama_layanan" placeholder="Nama Layanan" required></div>
+                        <div class="form-group"><input type="number" id="harga" placeholder="Harga (Rp)" required></div>
+                        <div class="form-group"><input type="number" id="durasi_pengerjaan" placeholder="Durasi (Hari)" required></div>
+                        <div class="form-group full-width"><textarea id="deskripsi_layanan" placeholder="Deskripsi Singkat" required></textarea></div>
+                    </div>
+                    <button type="submit" class="btn-submit">Simpan Layanan</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Daftar Layanan Tersedia</h3>
+                <ul id="serviceList" class="data-list"></ul>
+            </div>
+        </div>
+
+        <div id="orders" class="section-panel">
+            <div class="card">
+                <h3 id="orderTitle">Tambah Pesanan</h3>
+                <form id="orderForm">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" id="nomor_invoice" placeholder="Nomor Invoice" required></div>
+                        <div class="form-group">
+                            <select id="ord_customer_id" required>
+                                <option value="">-- Pilih Customer --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="ord_account_id" required>
+                                <option value="">-- Pilih Akun Game --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="ord_worker_id" required>
+                                <option value="">-- Pilih Worker / Penjoki --</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <small style="color:var(--text-muted); margin-bottom:5px; display:block;">Tahan CTRL / CMD untuk memilih lebih dari 1 layanan:</small>
+                            <select id="ord_layanan_dipesan" multiple required class="multi-select">
+                                </select>
+                        </div>
+                        <div class="form-group"><input type="number" id="total_harga" placeholder="Total Harga (Rp)" required></div>
+                        <div class="form-group">
+                            <select id="status_order" required>
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width"><input type="text" id="catatan_khusus" placeholder="Catatan Khusus"></div>
+                    </div>
+                    <button type="submit" class="btn-submit">Simpan Pesanan</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Daftar Pesanan Joki</h3>
+                <ul id="orderList" class="data-list"></ul>
+            </div>
+        </div>
+
+        <div id="payments" class="section-panel">
+            <div class="card">
+                <h3 id="paymentTitle">Tambah Data Pembayaran</h3>
+                <form id="paymentForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" id="pay_invoice" placeholder="Nomor Struk Pembayaran" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="pay_customer_id" required>
+                                <option value="">-- Pilih Customer --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="pay_order_id" required>
+                                <option value="">-- Pilih Pesanan (Invoice) --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="metode_pembayaran" required>
+                                <option value="">-- Pilih Metode Pembayaran --</option>
+                                <option value="BCA">Transfer BCA</option>
+                                <option value="Mandiri">Transfer Mandiri</option>
+                                <option value="GoPay">GoPay</option>
+                                <option value="OVO">OVO</option>
+                                <option value="OVO">SeaBank</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><input type="number" id="jumlah_dibayar" placeholder="Jumlah Dibayar (Rp)" required></div>
+                        <div class="form-group">
+                            <select id="status_pembayaran" required>
+                                <option value="Unpaid">Unpaid</option>
+                                <option value="Paid">Paid</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="bukti_transfer" placeholder="Link / Catatan Bukti Transfer Drive">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Simpan Pembayaran</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Daftar Transaksi Pembayaran</h3>
+                <ul id="paymentList" class="data-list"></ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
