@@ -82,7 +82,7 @@ async function loadUsers() {
     const data = await res.json();
     const list = document.getElementById('userList');
     list.innerHTML = '';
-    data.forEach(item => {
+    data.reverse().forEach(item => {
         list.innerHTML += `
             <li class="data-item">
                 <div class="data-info">
@@ -131,7 +131,7 @@ async function loadAccounts() {
     const data = await res.json();
     const list = document.getElementById('accountList');
     list.innerHTML = '';
-    data.forEach(item => {
+    data.reverse().forEach(item => {
         const customerName = item.customer_id ? item.customer_id.nama_lengkap : '-';
         list.innerHTML += `
             <li class="data-item">
@@ -184,7 +184,7 @@ async function loadServices() {
     const data = await res.json();
     const list = document.getElementById('serviceList');
     list.innerHTML = '';
-    data.forEach(item => {
+    data.reverse().forEach(item => {
         list.innerHTML += `
             <li class="data-item">
                 <div class="data-info">
@@ -256,7 +256,7 @@ async function loadOrders() {
     const data = await res.json();
     const list = document.getElementById('orderList');
     list.innerHTML = '';
-    data.forEach(item => {
+    data.reverse().forEach(item => {
         const workerName = item.worker_id ? item.worker_id.nama_lengkap : '-';
         const customerName = item.customer_id ? item.customer_id.nama_lengkap : '-';
         list.innerHTML += `
@@ -337,7 +337,7 @@ async function loadPayments() {
     const data = await res.json();
     const list = document.getElementById('paymentList');
     list.innerHTML = '';
-    data.forEach(item => {
+    data.reverse().forEach(item => {
         const orderRef = item.order_id ? item.order_id.nomor_invoice : '-';
         const customerName = item.customer_id ? item.customer_id.nama_lengkap : '-';
         list.innerHTML += `
